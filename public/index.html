@@ -4,12 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Little Lark · a murmur demo shop</title>
+    <script>
+      // Set the theme before first paint. Same rule as theme.js resolveTheme.
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem("theme"); } catch (e) {}
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="top">
       <h1>Little Lark</h1>
       <p class="tag">A demo shop built and run by murmur agents.</p>
+      <button id="theme-toggle" class="theme-toggle" type="button"></button>
     </header>
     <main class="layout">
       <section aria-labelledby="shop-title">
