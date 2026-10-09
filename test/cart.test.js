@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { addItem, removeItem, count, total, formatPrice } from "../public/cart.js";
+import { addItem, removeItem, count, isEmpty, total, formatPrice } from "../public/cart.js";
 import { PRODUCTS } from "../public/products.js";
 
 test("adding the same product twice counts two", () => {
@@ -23,6 +23,12 @@ test("the cart is never changed in place", () => {
 test("total sums price times quantity, in cents", () => {
   assert.equal(total({ tote: 1, mug: 2 }, PRODUCTS), 2400 + 2 * 1800);
   assert.equal(total({ unknown: 3 }, PRODUCTS), 0);
+});
+
+test("a cart is empty until it holds an item", () => {
+  assert.equal(isEmpty({}), true);
+  assert.equal(isEmpty(addItem({}, "mug")), false);
+  assert.equal(isEmpty(removeItem({ mug: 1 }, "mug")), true);
 });
 
 test("prices are shown in dollars with two decimals", () => {

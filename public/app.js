@@ -1,5 +1,5 @@
 import { PRODUCTS } from "./products.js";
-import { addItem, removeItem, count, total, formatPrice } from "./cart.js";
+import { addItem, removeItem, count, isEmpty, total, formatPrice } from "./cart.js";
 
 const KEY = "cart";
 let cart = load();
@@ -35,7 +35,15 @@ function renderProducts() {
 
 function renderCart() {
   const list = document.getElementById("cart-items");
-  list.innerHTML = Object.entries(cart)
+  const empty = isEmpty(cart);
+  document.querySelector(".cart .total").hidden = empty;
+  list.innerHTML = empty
+    ? `
+        <li class="empty">
+          <p>Your cart is empty.</p>
+          <p class="hint">Pick something from the shop to get started.</p>
+        </li>`
+    : Object.entries(cart)
     .map(([id, qty]) => {
       const p = PRODUCTS.find((x) => x.id === id);
       if (!p) return "";

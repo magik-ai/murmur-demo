@@ -61,8 +61,12 @@ button {
   padding: 10px 0;
   border-bottom: 1px solid var(--line);
 }
+.cart li.empty { display: block; border-bottom: 0; padding: 0; }
+.cart li.empty p { margin: 0; }
+.cart li.empty .hint { margin-top: 6px; color: var(--muted); }
 .remove { background: transparent; color: var(--ink); border: 1px solid var(--line); padding: 4px 12px; }
 .total { display: flex; justify-content: space-between; margin: 18px 0 0; font-size: 1.1rem; }
+.total[hidden] { display: none; }
 @media (max-width: 800px) {
   .layout { grid-template-columns: 1fr; padding: 16px 20px 40px; }
   .grid { grid-template-columns: repeat(2, 1fr); }
