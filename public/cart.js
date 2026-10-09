@@ -18,6 +18,10 @@ export function count(cart) {
   return Object.values(cart).reduce((sum, qty) => sum + qty, 0);
 }
 
+export function isEmpty(cart) {
+  return count(cart) === 0;
+}
+
 export function total(cart, products) {
   return Object.entries(cart).reduce((sum, [id, qty]) => {
     const product = products.find((p) => p.id === id);
