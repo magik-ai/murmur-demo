@@ -1,0 +1,70 @@
+/* Sized for a projector: big type, strong contrast, nothing under 18px. */
+:root {
+  --paper: #faf3e6;
+  --card: #fffaf1;
+  --ink: #2b1f2e;
+  --muted: #6a5a68;
+  --accent: #6b57b5;
+  --line: rgba(43, 31, 46, 0.14);
+  font-size: 20px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.4;
+}
+.top { padding: 32px 40px 8px; }
+.top h1 { margin: 0; font-size: 2.4rem; letter-spacing: -0.02em; }
+.tag { margin: 4px 0 0; color: var(--muted); }
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 32px;
+  padding: 16px 40px 48px;
+}
+h2 { font-size: 1.3rem; margin: 0 0 16px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.product {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+}
+.product .emoji { font-size: 2.6rem; }
+.product h3 { margin: 8px 0 4px; font-size: 1.05rem; }
+.price { margin: 0 0 14px; color: var(--muted); }
+button {
+  font: inherit;
+  font-size: 0.9rem;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+.cart {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+  align-self: start;
+}
+.cart ul { list-style: none; margin: 0; padding: 0; }
+.cart li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.remove { background: transparent; color: var(--ink); border: 1px solid var(--line); padding: 4px 12px; }
+.total { display: flex; justify-content: space-between; margin: 18px 0 0; font-size: 1.1rem; }
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; padding: 16px 20px 40px; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .top { padding: 24px 20px 8px; }
+}

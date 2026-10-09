@@ -1,0 +1,9 @@
+{
+  "name": "murmur-demo",
+  "private": true,
+  "type": "module",
+  "description": "A tiny storefront used to demo murmur live.",
+  "scripts": {
+    "test": "node --test"
+  }
+}
