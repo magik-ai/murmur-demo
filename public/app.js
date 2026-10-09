@@ -1,4 +1,5 @@
 import { PRODUCTS } from "./products.js";
+import { matches } from "./search.js";
 import { addItem, removeItem, count, total, formatPrice } from "./cart.js";
 
 const KEY = "cart";
@@ -20,9 +21,14 @@ function save() {
   }
 }
 
-function renderProducts() {
+function renderProducts(query = "") {
   const grid = document.getElementById("products");
-  grid.innerHTML = PRODUCTS.map(
+  const shown = PRODUCTS.filter((p) => matches(p.name, query));
+  if (shown.length === 0) {
+    grid.innerHTML = `<p class="empty">Nothing matches that yet.</p>`;
+    return;
+  }
+  grid.innerHTML = shown.map(
     (p) => `
       <article class="product">
         <div class="emoji" aria-hidden="true">${p.emoji}</div>
@@ -58,6 +64,10 @@ document.addEventListener("click", (e) => {
   else return;
   save();
   renderCart();
+});
+
+document.getElementById("search").addEventListener("input", (e) => {
+  renderProducts(e.target.value);
 });
 
 renderProducts();

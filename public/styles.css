@@ -26,6 +26,17 @@ body {
   padding: 16px 40px 48px;
 }
 h2 { font-size: 1.3rem; margin: 0 0 16px; }
+#search {
+  font: inherit;
+  width: 100%;
+  margin: 0 0 20px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink);
+}
+.empty { color: var(--muted); grid-column: 1 / -1; }
 .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .product {
   background: var(--card);
