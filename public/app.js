@@ -1,5 +1,6 @@
 import { PRODUCTS } from "./products.js";
 import { addItem, removeItem, count, total, formatPrice } from "./cart.js";
+import { THEME_KEY, resolveTheme, toggleTheme, toggleLabel } from "./theme.js";
 
 const KEY = "cart";
 let cart = load();
@@ -62,3 +63,32 @@ document.addEventListener("click", (e) => {
 
 renderProducts();
 renderCart();
+
+function readSavedTheme() {
+  try {
+    return localStorage.getItem(THEME_KEY);
+  } catch {
+    return null;
+  }
+}
+
+const toggle = document.getElementById("theme-toggle");
+let theme = resolveTheme(readSavedTheme(), matchMedia("(prefers-color-scheme: dark)").matches);
+
+function applyTheme() {
+  document.documentElement.dataset.theme = theme;
+  toggle.textContent = theme === "dark" ? "☀ Light theme" : "☾ Dark theme";
+  toggle.setAttribute("aria-label", toggleLabel(theme));
+}
+
+toggle.addEventListener("click", () => {
+  theme = toggleTheme(theme);
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+  } catch {
+    /* private mode: the choice lasts for this visit only */
+  }
+  applyTheme();
+});
+
+applyTheme();
